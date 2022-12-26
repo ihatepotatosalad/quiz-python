@@ -7,12 +7,20 @@ question_bank = [
 
 
 ]
+category_list=''
 for i in question_data:
-    question_text = i['text']
-    question_answer = i['answer']
-    
-    new_question = Question(question_text,question_answer)
-    question_bank.append(new_question)
+    if i['category'] not in category_list:
+        category_list+=i['category']+' '
+
+
+category = input(f'what category {category_list}: ').title()
+for i in question_data:
+    if category in i['category']:
+        question_text = i['question']
+        question_answer = i['correct_answer']
+        
+        new_question = Question(question_text,question_answer)
+        question_bank.append(new_question)
 
 quiz = QuizBrain(question_bank)
 
